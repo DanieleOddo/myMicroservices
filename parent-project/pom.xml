@@ -10,4 +10,77 @@
   <modules> 
     <module>config</module>
   </modules>
+
+  <properties>
+    <java.version>11</java.version>
+		<spring-cloud.version>2021.0.3</spring-cloud.version>
+    <spring-boot.version>2.7.0</spring-boot.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+  <dependencyManagement>
+		<dependencies>
+      <!-- Spring Boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    <!-- Spring Cloud --> 
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+		  </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+          <groupId>com.hubspot.maven.plugins</groupId>
+          <artifactId>prettier-maven-plugin</artifactId>
+          <version>0.16</version>
+          <configuration>
+            <printWidth>90</printWidth>
+            <tabWidth>2</tabWidth>
+            <useTabs>false</useTabs>
+            <ignoreConfigFile>true</ignoreConfigFile>
+            <ignoreEditorConfig>true</ignoreEditorConfig>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <goals>
+                <goal>write</goal>
+              </goals>
+            </execution>
+          </executions>      
+        </plugin>
+    </plugins>
+  </build>
+
 </project>
