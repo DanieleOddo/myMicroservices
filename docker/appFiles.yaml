@@ -1,0 +1,12 @@
+version: "3.7"
+
+service:
+  orcldb:
+    image: gvenzl/oracle-xe:latest
+    container_name: myOracle
+    environment:
+      - ORACLE_PASSWORD=oracle123
+    ports:
+      - 1521:1521
+    volumes:
+      - ./data:/u01/app/oracle
